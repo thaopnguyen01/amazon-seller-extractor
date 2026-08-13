@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Seller Extractor - Chrome Extension</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      color: white;
+      margin-bottom: 60px;
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    header p {
+      font-size: 1.3em;
+      opacity: 0.95;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 16px 40px;
+      background: #FF9900;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button:hover {
+      background: #E67E00;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-card h3 {
+      color: #667eea;
+      margin-bottom: 15px;
+      font-size: 1.4em;
+    }
+
+    .feature-card p {
+      color: #666;
+      line-height: 1.8;
+    }
+
+    .feature-card strong {
+      color: #333;
+    }
+
+    .specs {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .specs h2 {
+      color: #667eea;
+      margin-bottom: 30px;
+      font-size: 2em;
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .spec-item {
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #FF9900;
+    }
+
+    .spec-item h4 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    .spec-item p {
+      color: #666;
+      font-size: 0.95em;
+    }
+
+    .installation {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .installation h2 {
+      color: #667eea;
+      margin-bottom: 30px;
+      font-size: 2em;
+    }
+
+    .steps {
+      list-style: none;
+    }
+
+    .steps li {
+      padding: 15px;
+      margin-bottom: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .steps li:before {
+      content: attr(data-step);
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      background: #667eea;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+
+    .steps li.step1:before { content: "1"; }
+    .steps li.step2:before { content: "2"; }
+    .steps li.step3:before { content: "3"; }
+    .steps li.step4:before { content: "4"; }
+    .steps li.step5:before { content: "5"; }
+
+    .steps li strong {
+      color: #333;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .supported {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .supported h2 {
+      color: #667eea;
+      margin-bottom: 25px;
+      font-size: 2em;
+    }
+
+    .regions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .region {
+      padding: 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .scenarios {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .scenarios h2 {
+      color: #667eea;
+      margin-bottom: 25px;
+      font-size: 2em;
+    }
+
+    .scenario-item {
+      padding: 20px;
+      margin-bottom: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #FF9900;
+    }
+
+    .scenario-item h4 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .scenario-item p {
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .scenario-item .result {
+      padding: 10px;
+      background: white;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      color: #667eea;
+    }
+
+    footer {
+      text-align: center;
+      color: white;
+      padding: 30px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin-bottom: 10px;
+    }
+
+    .github-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.3s ease;
+    }
+
+    .github-link:hover {
+      opacity: 0.8;
+    }
+
+    .version-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2em; }
+      header p { font-size: 1em; }
+      .cta-button { padding: 12px 30px; font-size: 1em; }
+      .specs-grid, .regions { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🏪 Amazon Seller Extractor</h1>
+      <p>Instantly extract seller information from any Amazon product</p>
+      <button class="cta-button" onclick="downloadExtension()">
+        ⬇️ Download Extension (v1.0.9)
+      </button>
+      <span class="version-badge">Latest Release</span>
+    </header>
+
+    <div class="features">
+      <div class="feature-card">
+        <h3>⚡ Instant Extraction</h3>
+        <p>Automatically detects and extracts <strong>seller name, ID, and storefront URL</strong> on any Amazon product page.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🌍 All Regions</h3>
+        <p>Works on <strong>amazon.com, amazon.co.uk, amazon.ca, and amazon.co.jp</strong> with proper language/region handling.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🎯 Multi-Seller Support</h3>
+        <p><strong>Automatically detects multiple sellers</strong> and navigates to the offer-listing page to show all available sellers.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>📋 Easy Copy</h3>
+        <p>One-click copy buttons for seller name, ID, and URL. Perfect for quick data collection and analysis.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🤖 Smart Detection</h3>
+        <p>Handles <strong>region-specific labels</strong> like "Sold by", "Shipper / Seller", and "Ships from" automatically.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🔗 Storefront Links</h3>
+        <p>Direct access to seller storefronts with one click. Special handling for Amazon-direct sales.</p>
+      </div>
+    </div>
+
+    <div class="specs">
+      <h2>✨ Key Features</h2>
+      <div class="specs-grid">
+        <div class="spec-item">
+          <h4>✓ Auto-Detection</h4>
+          <p>Automatically runs on product pages - no configuration needed.</p>
+        </div>
+
+        <div class="spec-item">
+          <h4>✓ Multiple Sellers</h4>
+          <p>Auto-navigates to offer-listing when multiple sellers detected.</p>
+        </div>
+
+        <div class="spec-item">
+          <h4>✓ Amazon Handling</h4>
+          <p>Properly detects when Amazon is the seller with special formatting.</p>
+        </div>
+
+        <div class="spec-item">
+          <h4>✓ Region Aware</h4>
+          <p>Preserves user's language/region setting (e.g., /-/en/ path on .co.jp).</p>
+        </div>
+
+        <div class="spec-item">
+          <h4>✓ Copy to Clipboard</h4>
+          <p>Quick copy buttons for each field with visual feedback.</p>
+        </div>
+
+        <div class="spec-item">
+          <h4>✓ Extraction Details</h4>
+          <p>See extraction method, raw data, domain, and timestamp for debugging.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="supported">
+      <h2>🌐 Supported Amazon Regions</h2>
+      <div class="regions">
+        <div class="region">amazon.com</div>
+        <div class="region">amazon.co.uk</div>
+        <div class="region">amazon.ca</div>
+        <div class="region">amazon.co.jp</div>
+      </div>
+    </div>
+
+    <div class="scenarios">
+      <h2>📊 What It Extracts</h2>
+      <div class="scenario-item">
+        <h4>🔶 Single Third-Party Seller</h4>
+        <p>Product sold by one third-party seller:</p>
+        <div class="result">
+          Seller Name: Jiya Enterprise Limited<br>
+          Seller ID: A1T1LYOBFB0EUJ<br>
+          URL: www.amazon.co.jp/shops/A1T1LYOBFB0EUJ
+        </div>
+      </div>
+
+      <div class="scenario-item">
+        <h4>🟢 Amazon Direct</h4>
+        <p>Product sold directly by Amazon:</p>
+        <div class="result">
+          Seller Name: Amazon<br>
+          Seller ID: AMAZON<br>
+          URL: (none - Amazon is the store)
+        </div>
+      </div>
+
+      <div class="scenario-item">
+        <h4>🟠 Multiple Sellers</h4>
+        <p>Product with multiple sellers available:</p>
+        <div class="result">
+          Auto-navigates to offer-listing<br>
+          Extracts each seller's information<br>
+          Shows complete seller details
+        </div>
+      </div>
+    </div>
+
+    <div class="installation">
+      <h2>📦 Installation (5 Minutes)</h2>
+      <ol class="steps">
+        <li class="step1">
+          <strong>Download the extension</strong>
+          <p>Click the download button above to get the latest version</p>
+        </li>
+
+        <li class="step2">
+          <strong>Extract the ZIP file</strong>
+          <p>Unzip the downloaded file to any folder on your computer</p>
+        </li>
+
+        <li class="step3">
+          <strong>Open Chrome Extensions</strong>
+          <p>Go to <strong>chrome://extensions/</strong> in your browser address bar</p>
+        </li>
+
+        <li class="step4">
+          <strong>Enable Developer Mode</strong>
+          <p>Toggle the "Developer mode" switch in the top-right corner</p>
+        </li>
+
+        <li class="step5">
+          <strong>Load the extension</strong>
+          <p>Click "Load unpacked" and select the extracted <strong>amazon-seller-extractor</strong> folder</p>
+        </li>
+      </ol>
+      <p style="margin-top: 20px; color: #666;">That's it! The extension is now installed and ready to use.</p>
+    </div>
+
+    <footer>
+      <p>Made with ❤️ for Amazon marketplace research</p>
+      <p>
+        <a href="https://github.com/yourusername/amazon-seller-extractor" class="github-link">
+          View on GitHub ★
+        </a>
+      </p>
+      <p style="font-size: 0.9em; opacity: 0.8;">Version 1.0.9 • Last updated: August 2026</p>
+    </footer>
+  </div>
+
+  <script>
+    function downloadExtension() {
+      const downloadUrl = 'https://github.com/yourusername/amazon-seller-extractor/releases/download/v1.0.9/amazon-seller-extractor.zip';
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = 'amazon-seller-extractor.zip';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>
