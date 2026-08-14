@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amazon Seller Extractor - Chrome Extension</title>
+  <title>Seller Extractor - Chrome Extension</title>
   <style>
     * {
       margin: 0;
@@ -308,10 +308,10 @@
 <body>
   <div class="container">
     <header>
-      <h1>🏪 Amazon Seller Extractor</h1>
-      <p>Instantly extract seller information from any Amazon product</p>
+      <h1>🏪 Seller Extractor</h1>
+      <p>Instantly extract seller information from Amazon and Walmart products</p>
       <button class="cta-button" onclick="downloadExtension()">
-        ⬇️ Download Extension (v1.0.9)
+        ⬇️ Download Extension (v1.0.10)
       </button>
       <span class="version-badge">Latest Release</span>
     </header>
@@ -319,12 +319,12 @@
     <div class="features">
       <div class="feature-card">
         <h3>⚡ Instant Extraction</h3>
-        <p>Automatically detects and extracts <strong>seller name, ID, and storefront URL</strong> on any Amazon product page.</p>
+        <p>Automatically detects and extracts <strong>seller name, ID, and storefront URL</strong> on Amazon and Walmart product pages.</p>
       </div>
 
       <div class="feature-card">
         <h3>🌍 All Regions</h3>
-        <p>Works on <strong>amazon.com, amazon.co.uk, amazon.ca, and amazon.co.jp</strong> with proper language/region handling.</p>
+        <p>Works on <strong>amazon.com, amazon.co.uk, amazon.ca, amazon.co.jp, and walmart.ca</strong> with proper language/region handling.</p>
       </div>
 
       <div class="feature-card">
@@ -384,12 +384,13 @@
     </div>
 
     <div class="supported">
-      <h2>🌐 Supported Amazon Regions</h2>
+      <h2>🌐 Supported Platforms</h2>
       <div class="regions">
         <div class="region">amazon.com</div>
         <div class="region">amazon.co.uk</div>
         <div class="region">amazon.ca</div>
         <div class="region">amazon.co.jp</div>
+        <div class="region">walmart.ca</div>
       </div>
     </div>
 
@@ -451,24 +452,24 @@
 
         <li class="step5">
           <strong>Load the extension</strong>
-          <p>Click "Load unpacked" and select the extracted <strong>amazon-seller-extractor</strong> folder</p>
+          <p>Click "Load unpacked" and select the extracted <strong>seller-extractor</strong> folder</p>
         </li>
       </ol>
       <p style="margin-top: 20px; color: #666;">That's it! The extension is now installed and ready to use.</p>
     </div>
 
     <footer>
-      <p>Made with ❤️ for Amazon marketplace research</p>
-      <p style="font-size: 0.9em; opacity: 0.8;">Version 1.0.9 • Last updated: August 2026</p>
+      <p>Made with ❤️ for e-commerce marketplace research</p>
+      <p style="font-size: 0.9em; opacity: 0.8;">Version 1.0.10 • Last updated: August 2026</p>
     </footer>
   </div>
 
   <script>
     function downloadExtension() {
-      const downloadUrl = 'https://github.com/thaopnguyen01/amazon-seller-extractor/releases/download/v1.0.9/amazon-seller-extractor.zip';
+      const downloadUrl = 'https://github.com/thaopnguyen01/seller-extractor/releases/download/v1.0.10/seller-extractor.zip';
       const link = document.createElement('a');
       link.href = downloadUrl;
-      link.download = 'amazon-seller-extractor.zip';
+      link.download = 'seller-extractor.zip';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
