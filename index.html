@@ -309,7 +309,7 @@
   <div class="container">
     <header>
       <h1>🏪 Seller Extractor</h1>
-      <p>Instantly extract seller information from Amazon and Walmart products</p>
+      <p>Extract product & seller data instantly. Works with Google Sheets for seamless data collection.</p>
       <button class="cta-button" onclick="downloadExtension()">
         ⬇️ Download Extension (v1.0.10)
       </button>
@@ -318,33 +318,33 @@
 
     <div class="features">
       <div class="feature-card">
-        <h3>⚡ Instant Extraction</h3>
-        <p>Automatically detects and extracts <strong>seller name, ID, and storefront URL</strong> on Amazon and Walmart product pages.</p>
+        <h3>⚡ Complete Data Extraction</h3>
+        <p>Extracts <strong>ASIN, Product URL, Title, Seller Name, Seller ID, and Storefront URL</strong> - everything you need!</p>
       </div>
 
       <div class="feature-card">
-        <h3>🌍 All Regions</h3>
-        <p>Works on <strong>amazon.com, amazon.co.uk, amazon.ca, amazon.co.jp, and walmart.ca</strong> with proper language/region handling.</p>
+        <h3>📋 Copy Row JSON</h3>
+        <p>One-click copy of all data as JSON. Perfect for <strong>pasting into Google Sheets</strong> with instant auto-fill!</p>
       </div>
 
       <div class="feature-card">
-        <h3>🎯 Multi-Seller Support</h3>
-        <p><strong>Automatically detects multiple sellers</strong> and navigates to the offer-listing page to show all available sellers.</p>
+        <h3>🌍 5 Platforms Supported</h3>
+        <p>Works on <strong>amazon.com, amazon.co.uk, amazon.ca, amazon.co.jp, and walmart.ca</strong> - truly global reach.</p>
       </div>
 
       <div class="feature-card">
-        <h3>📋 Easy Copy</h3>
-        <p>One-click copy buttons for seller name, ID, and URL. Perfect for quick data collection and analysis.</p>
+        <h3>🎯 Floating Notification</h3>
+        <p>Auto-appears on product pages with compact design. Shows key seller info instantly, <strong>no popup needed!</strong></p>
       </div>
 
       <div class="feature-card">
-        <h3>🤖 Smart Detection</h3>
-        <p>Handles <strong>region-specific labels</strong> like "Sold by", "Shipper / Seller", and "Ships from" automatically.</p>
+        <h3>🔗 Smart Seller Links</h3>
+        <p>Direct access to seller storefronts with one click. Proper handling for Amazon-direct and third-party sellers.</p>
       </div>
 
       <div class="feature-card">
-        <h3>🔗 Storefront Links</h3>
-        <p>Direct access to seller storefronts with one click. Special handling for Amazon-direct sales.</p>
+        <h3>📊 Google Sheets Integration</h3>
+        <p>Paste JSON into any cell and script auto-fills <strong>all columns correctly</strong> - zero manual entry needed!</p>
       </div>
     </div>
 
@@ -352,33 +352,33 @@
       <h2>✨ Key Features</h2>
       <div class="specs-grid">
         <div class="spec-item">
-          <h4>✓ Auto-Detection</h4>
-          <p>Automatically runs on product pages - no configuration needed.</p>
+          <h4>✓ 6 Data Fields</h4>
+          <p>ASIN, Product URL, Title, Seller Name, Seller ID, Seller URL all extracted automatically.</p>
         </div>
 
         <div class="spec-item">
-          <h4>✓ Multiple Sellers</h4>
-          <p>Auto-navigates to offer-listing when multiple sellers detected.</p>
+          <h4>✓ Copy Row JSON</h4>
+          <p>One-click copy all data as JSON - perfect for spreadsheet workflows and bulk processing.</p>
         </div>
 
         <div class="spec-item">
-          <h4>✓ Amazon Handling</h4>
-          <p>Properly detects when Amazon is the seller with special formatting.</p>
+          <h4>✓ Auto-Paste to Sheets</h4>
+          <p>Paste JSON into Google Sheets and script auto-fills all correct columns - no manual work!</p>
         </div>
 
         <div class="spec-item">
-          <h4>✓ Region Aware</h4>
-          <p>Preserves user's language/region setting (e.g., /-/en/ path on .co.jp).</p>
+          <h4>✓ Floating Notification</h4>
+          <p>Compact notification appears automatically on product pages with essential info and copy buttons.</p>
         </div>
 
         <div class="spec-item">
-          <h4>✓ Copy to Clipboard</h4>
-          <p>Quick copy buttons for each field with visual feedback.</p>
+          <h4>✓ 5 Platforms</h4>
+          <p>amazon.com, amazon.co.uk, amazon.ca, amazon.co.jp, and walmart.ca all fully supported.</p>
         </div>
 
         <div class="spec-item">
-          <h4>✓ Extraction Details</h4>
-          <p>See extraction method, raw data, domain, and timestamp for debugging.</p>
+          <h4>✓ Fully Dynamic</h4>
+          <p>Paste JSON anywhere in Google Sheets - script knows exactly where each field should go!</p>
         </div>
       </div>
     </div>
@@ -397,34 +397,66 @@
     <div class="scenarios">
       <h2>📊 What It Extracts</h2>
       <div class="scenario-item">
-        <h4>🔶 Single Third-Party Seller</h4>
-        <p>Product sold by one third-party seller:</p>
+        <h4>🔶 Complete Product Data</h4>
+        <p>All essential information in one click:</p>
         <div class="result">
+          ASIN: B09ZRN1N3Z<br>
+          Product URL: https://www.amazon.com/dp/B09ZRN1N3Z<br>
+          Title: Premium Supplement - 90 Capsules<br>
           Seller Name: Jiya Enterprise Limited<br>
           Seller ID: A1T1LYOBFB0EUJ<br>
-          URL: www.amazon.co.jp/shops/A1T1LYOBFB0EUJ
+          Seller URL: https://www.amazon.com/shops/A1T1LYOBFB0EUJ
         </div>
       </div>
 
       <div class="scenario-item">
-        <h4>🟢 Amazon Direct</h4>
-        <p>Product sold directly by Amazon:</p>
+        <h4>🟢 Amazon Direct Sales</h4>
+        <p>Proper handling when Amazon is the seller:</p>
         <div class="result">
+          ASIN: B07XYZABC<br>
+          Product URL: https://www.amazon.com/dp/B07XYZABC<br>
+          Title: Popular Electronics Item<br>
           Seller Name: Amazon<br>
           Seller ID: AMAZON<br>
-          URL: (none - Amazon is the store)
+          Seller URL: Amazon (store-direct)
         </div>
       </div>
 
       <div class="scenario-item">
-        <h4>🟠 Multiple Sellers</h4>
-        <p>Product with multiple sellers available:</p>
+        <h4>📋 Google Sheets Integration</h4>
+        <p>Click "Copy Row JSON" and paste into any Google Sheet cell:</p>
         <div class="result">
-          Auto-navigates to offer-listing<br>
-          Extracts each seller's information<br>
-          Shows complete seller details
+          Script auto-fills all columns correctly<br>
+          Works on all 5 platforms<br>
+          Paste anywhere in the row - script figures it out!
         </div>
       </div>
+    </div>
+
+    <div class="installation">
+      <h2>⚡ Simple Workflow</h2>
+      <div class="specs-grid">
+        <div class="spec-item">
+          <h4>1️⃣ Extract</h4>
+          <p>Load product page → Floating popup appears → Data automatically extracted</p>
+        </div>
+
+        <div class="spec-item">
+          <h4>2️⃣ Copy JSON</h4>
+          <p>Click "Copy Row JSON" button → All data copied as JSON to clipboard</p>
+        </div>
+
+        <div class="spec-item">
+          <h4>3️⃣ Paste to Sheets</h4>
+          <p>Go to Google Sheet → Click any cell in a row → Paste JSON</p>
+        </div>
+
+        <div class="spec-item">
+          <h4>4️⃣ Auto-Fill</h4>
+          <p>Script detects platform → Fills all columns correctly → No manual work!</p>
+        </div>
+      </div>
+      <p style="margin-top: 20px; text-align: center; color: #666;"><strong>Complete workflow in ~30 seconds per product!</strong></p>
     </div>
 
     <div class="installation">
